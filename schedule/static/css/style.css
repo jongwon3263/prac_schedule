@@ -1,0 +1,14 @@
+#siteContainer {
+    background-color: #f0f0f0; /* 밝은 회색 */
+    padding: 20px; /* 내부 여백 추가 */
+    border-radius: 8px; /* 둥근 모서리 */
+    border: 1px solid #ccc; /* 경계선 */
+}
+
+#servicesContainer {
+    background-color: #f8f9fa; /* 밝은 회색 */
+    padding: 20px; /* 내부 여백 추가 */
+    border-radius: 8px; /* 둥근 모서리 */
+    border: 1px solid #dee2e6; /* 연한 회색 경계선 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+}

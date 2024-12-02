@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>상세 정보</h1>
+<table>
+    <tr>
+        <th>일정 ID</th>
+        <td>{{ schedule.id }}</td>
+    </tr>
+    <tr>
+        <th>지역</th>
+        <td>{{ schedule.area }}</td>
+    </tr>
+    <tr>
+        <th>상태</th>
+        <td>{{ schedule.status }}</td>
+    </tr>
+    <tr>
+        <th>서비스</th>
+        <td>{{ schedule.services | join(', ') }}</td>
+    </tr>
+    <tr>
+        <th>상세 서비스</th>
+        <td>{{ schedule.detail }}</td>
+    </tr>
+    <tr>
+        <th>시작일</th>
+        <td>{{ schedule.startDate }}</td>
+    </tr>
+    <tr>
+        <th>완료일</th>
+        <td>{{ schedule.finishDate }}</td>
+    </tr>
+    <tr>
+        <th>고객 전화</th>
+        <td>{{ schedule.customerPhone }}</td>
+    </tr>
+    <tr>
+        <th>회사</th>
+        <td>{{ schedule.company }}</td>
+    </tr>
+    <tr>
+        <th>업체 단가</th>
+        <td>{{ schedule.companyPay | number_format(separator=',') }} 원</td>
+    </tr>
+    <tr>
+        <th>전체 매출</th>
+        <td>{{ schedule.totalSales | number_format(separator=',') }} 원</td>
+    </tr>
+    <tr>
+        <th>예악금</th>
+        <td>{{ schedule.downPayment | number_format(separator=',') }} 원</td>
+    </tr>
+    <tr>
+        <th>잔금</th>
+        <td>{{ schedule.balance | number_format(separator=',') }} 원</td>
+    </tr>
+</table>
+{% endblock %}

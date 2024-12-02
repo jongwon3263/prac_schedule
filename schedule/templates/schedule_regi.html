@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block content %}
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>현장 정보</h2>
+            <div id="siteContainer">
+                <label for="area">지역</label>
+                <input type="text" id="area" name="area" class="form-control"><br>
+
+                <label for="address">주소</label>
+                <input type="text" id="address" name="address" class="form-control"><br><br>
+
+                <fieldset>
+                    <legend>상품군</legend>
+                    <div>
+                        <input type="checkbox" class="product" id="cleaning" name="cleaning">
+                        <label for="cleaning">입주청소</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="julun" name="julun">
+                        <label for="julun">줄눈시공</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="paint" name="paint">
+                        <label for="paint">탄성코트</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="kitchenCoating" name="kitchenCoating">
+                        <label for="kitchenCoating">상판코팅</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="nano" name="nano">
+                        <label for="nano">나노코팅</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="tileCoating" name="tileCoating">
+                        <label for="tileCoating">타일코팅</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="sajib" name="sajib">
+                        <label for="sajib">새집증후군 시공</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="product" id="gajeon" name="gajeon">
+                        <label for="gajeon">가전분해 청소</label>
+                    </div>
+                </fieldset><br>
+                <fieldset>
+                    <legend>건물 형태</legend>
+                    <div>
+                        <input type="radio" id="apartment" name="building" value="apartment">
+                        <label for="apartment">아파트</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="villa" name="building" value="villa">
+                        <label for="villa">빌라</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="officetel" name="building" value="officetel">
+                        <label for="officetel">오피스텔</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="etc" name="building" value="etc">
+                        <label for="etc">기타</label>
+                    </div>
+                </fieldset><br>
+
+                <label for="size">평수</label>
+                <input type="text" id="size" name="size" class="form-control"><br><br>
+
+                <label for="structure">방 구조</label>
+                <input type="text" id="structure" name="structure" class="form-control"><br><br>
+
+                <label for="customerPhone">고객 연락처</label>
+                <input type="text" id="customerPhone" name="customerPhone" class="form-control"><br><br>
+
+                <label for="totalSales">매출액</label>
+                <input type="number" id="totalSales" name="totalSales" class="form-control"><br><br>
+
+                <label for="specialNote">특이사항</label>
+                <textarea id="specialNote" name="specialNote" rows="3" class="form-control"></textarea><br><br>
+
+                <label for="depositorName">입금자명</label>
+                <input type="text" id="depositorName" name="depositorName" class="form-control"><br><br>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>시공 정보</h2>
+            <div id="servicesContainer"></div>
+            <input type="submit" value="제출" class="btn btn-primary mt-3">
+        </div>
+    </div>
+</form>
+
+<script>
+    const products = document.querySelectorAll('.product');
+    const servicesContainer = document.getElementById('servicesContainer');
+
+    function updateServices() {
+        servicesContainer.innerHTML = '';
+
+        products.forEach(product => {
+            if (product.checked) {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.className = 'service mb-3';
+
+                serviceDiv.innerHTML = `
+                    <h3>${product.labels[0].innerText}</h3>
+                    <label for="${product.id}-startDate">착수</label>
+                    <input type="date" id="${product.id}-startDate" name="${product.id}-startDate">
+                    <label for="${product.id}-finishDate">마감</label>
+                    <input type="date" id="${product.id}-finishDate" name="${product.id}-finishDate"><br><br>
+
+                    <fieldset>
+                        <legend>작업 시간대</legend>
+                        <div>
+                            <input type="radio" id="${product.id}-am" name="${product.id}-workTime" value="am">
+                            <label for="${product.id}-am">오전</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="${product.id}-pm" name="${product.id}-workTime" value="pm">
+                            <label for="${product.id}-pm">오후</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="${product.id}-tbd" name="${product.id}-workTime" value="tbd">
+                            <label for="${product.id}-tbd">추후 협의</label>
+                        </div>
+                    </fieldset><br>
+
+                    <label for="${product.id}-detail">시공 상세</label>
+                    <textarea id="${product.id}-detail" name="${product.id}-detail" rows="3"></textarea><br><br>
+
+                    <label for="${product.id}-company">시공 업체</label>
+                    <input type="text" id="${product.id}-company" name="${product.id}-company"><br><br>
+
+                    <label for="${product.id}-companyPayment">업체 도급가</label>
+                    <input type="number" id="${product.id}-companyPayment" name="${product.id}-companyPayment"><br><br>
+                    <hr>
+                `;
+                servicesContainer.appendChild(serviceDiv);
+            }
+        });
+    }
+
+    products.forEach(product => {
+        product.addEventListener('change', updateServices);
+    });
+</script>
+{% endblock %}
