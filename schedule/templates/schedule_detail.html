@@ -20,7 +20,7 @@
         <td>{{ schedule.services | join(', ') }}</td>
     </tr>
     <tr>
-        <th>상세 서비스</th>
+        <th>시공 상세 내용</th>
         <td>{{ schedule.detail }}</td>
     </tr>
     <tr>
@@ -36,11 +36,11 @@
         <td>{{ schedule.customerPhone }}</td>
     </tr>
     <tr>
-        <th>회사</th>
+        <th>업체</th>
         <td>{{ schedule.company }}</td>
     </tr>
     <tr>
-        <th>업체 단가</th>
+        <th>업체 비용</th>
         <td>{{ schedule.companyPay | number_format(separator=',') }} 원</td>
     </tr>
     <tr>
